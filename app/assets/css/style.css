@@ -1,0 +1,32 @@
+*
+{
+    margin:0;
+    padding:0;
+    border:none;
+}
+
+body
+{
+    margin: 100px auto;
+}
+
+h1,
+h3,
+p
+{
+    text-align:center;
+    color:#555;
+}
+
+.title
+{
+    color:red;
+    font-size: 24px;
+    background:#f1f1f1;
+    padding:30px;
+}
+
+p
+{
+    padding:10px;
+}
