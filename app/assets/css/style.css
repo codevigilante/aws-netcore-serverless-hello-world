@@ -12,18 +12,21 @@ body
 
 h1,
 h3,
-p
+p,
+.data-container
 {
     text-align:center;
     color:#555;
 }
 
-.title
+.title,
+.data-container
 {
     color:red;
     font-size: 24px;
     background:#f1f1f1;
     padding:30px;
+    min-height: 10px;
 }
 
 p

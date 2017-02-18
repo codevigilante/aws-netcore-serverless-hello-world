@@ -1,12 +1,7 @@
-function resolveTemplate(id, placeholder)
+function resolveTemplate(id, placeholder, context)
 {
     var templateHtml = $(id).html();
     var template = Handlebars.compile(templateHtml);
-
-    var context =
-    {
-        "title": "Hello World"
-    };
 
     var compiledHtml = template(context);
 
@@ -17,5 +12,19 @@ function resolveTemplate(id, placeholder)
 
 $(document).ready(function()
 {
-    resolveTemplate("#data", ".data-container");
+    $.ajax(
+    {
+        url: "https://ugleus55fg.execute-api.us-east-1.amazonaws.com/test/greetings",
+        success: function(result)
+        {
+            resolveTemplate("#data", ".data-container", result);
+        },
+        error: function()
+        {
+            alert("There was an error fetching the greeting from the API.");
+        },
+        method: 'GET',
+        cache: false,
+        dataType: 'json'
+    });
 });

@@ -1,27 +1,29 @@
 <html>
     <head>
-        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <!--
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.runtime.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
         -->
         <script src="home.js"></script>
 
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
 	    <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+
+        <title>AWS "Serverless" .NET Core 1.0 Hello World</title>
     </head>
     <body>
-        <h1>AWS .NET Core (v1.0) Serverless Hello World</h1>
+        <h1>AWS .NET Core (v1.0) "Serverless" Hello World</h1>
         <script id="data" type="text/x-handlebars-template">
-            <h3 class="title">{{title}}</h3>
+            <h3 class="title">{{greeting}}</h3>
         </script>
-        <div class="data-container"></div>
+        <div class="data-container">(This sucks!)</div>
         <p>If you're reading the text 'Hello World' above, then everything is kick ass!</p>
         <p>If it's anything else, everything sucks and you should execute survival plans!</p>
 
         <p class="tech">This page uses the following techonologies: <a href="https://jquery.com/">jQuery</a>, <a href="http://handlebarsjs.com/">Handlebars</a>, 
                         <a href="https://www.w3schools.com/html/html_css.asp">HTML/CSS</a>, <a href="https://aws.amazon.com/api-gateway/">AWS API Gateway</a>, 
                         <a href="https://aws.amazon.com/lambda/">AWS Lambda</a>, <a href="https://aws.amazon.com/dynamodb/">AWS DynamoDB</a>, 
-                        <a href="https://aws.amazon.com/route53/">Amazon Route 53</a>
+                        <a href="https://aws.amazon.com/route53/">Amazon Route 53</a></p>
+        <p>See the things used to make this on github: <a href="https://github.com/codevigilante/aws-netcore-serverless-hello-world">aws-netcore-serverless-hello-world</a></p>
     </body>
 </html>
