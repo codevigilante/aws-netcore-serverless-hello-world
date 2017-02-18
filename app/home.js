@@ -6,8 +6,6 @@ function resolveTemplate(id, placeholder, context)
     var compiledHtml = template(context);
 
     $(placeholder).html(compiledHtml);
-
-    console.log(compiledHtml);
 }
 
 $(document).ready(function()
@@ -17,6 +15,8 @@ $(document).ready(function()
         url: "https://ugleus55fg.execute-api.us-east-1.amazonaws.com/test/greetings",
         success: function(result)
         {
+            // 'result' = { "greeting": "Hello World" }
+            
             resolveTemplate("#data", ".data-container", result);
         },
         error: function()
