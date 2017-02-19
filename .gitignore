@@ -1,0 +1,5 @@
+*bin*
+*obj*
+*.lock.json
+*.DS_store
+*.vscode

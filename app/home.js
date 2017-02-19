@@ -17,7 +17,9 @@ $(document).ready(function()
         {
             // 'result' = { "greeting": "Hello World" }
             
-            resolveTemplate("#data", ".data-container", result);
+            var jsonObj = $.parseJSON(result);
+                        
+            resolveTemplate("#data", ".data-container", jsonObj);
         },
         error: function()
         {
