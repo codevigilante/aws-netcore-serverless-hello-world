@@ -2,6 +2,8 @@
 
 This little app is an experiment to play around with AWS serverless infrastructure, Lambda in particular, using the fairly new .NET Core and C#.  
 
+See it in action @ [awsnetcore.com](http://awsnetcore.com)
+
 # The Plan
 
 1. Design a simple, static HTML page that uses jQuery to call the API method and populate the page
