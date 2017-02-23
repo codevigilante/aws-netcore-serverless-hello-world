@@ -1,34 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-using Xunit;
-using Amazon.Lambda.Core;
+﻿using Xunit;
+using Amazon;
+using Amazon.DynamoDBv2;
 using Amazon.Lambda.TestUtilities;
-using Amazon.Lambda.APIGatewayEvents;
-
-using AWSNetCoreLambda;
 
 namespace AWSNetCoreLambda.Tests
 {
     public class FunctionTest
     {
+        IAmazonDynamoDB DDBClient { get; }
+
         public FunctionTest()
         {
+            this.DDBClient = new AmazonDynamoDBClient(RegionEndpoint.USEast1);
         }
 
         [Fact]
-        public void TetGetMethod()
+        public async void TetGetMethod()
         {
             TestLambdaContext context;
 
-            ServerlessHelloWorld functions = new ServerlessHelloWorld();
+            ServerlessHelloWorld functions = new ServerlessHelloWorld(this.DDBClient);
 
             context = new TestLambdaContext();
-            var response = functions.Get(context);
+            var response = await functions.Get(context);
 
-            Assert.Equal("{\"greeting\":\"Hello World\"}", response);
+            Assert.Equal("{\"language\":\"english\",\"greeting\":\"Hello World\"}", response);
         }
     }
 }

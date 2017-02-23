@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
+﻿using System.Threading.Tasks;
 
 using Newtonsoft.Json;
 
 using Amazon.Lambda.Core;
-using Amazon.Lambda.APIGatewayEvents;
-using Amazon.Lambda.Serialization;
+
+using Amazon;
+using Amazon.DynamoDBv2;
+using Amazon.DynamoDBv2.DataModel;
 
 [assembly: LambdaSerializerAttribute(typeof(Amazon.Lambda.Serialization.Json.JsonSerializer))]
 
@@ -14,40 +14,43 @@ namespace AWSNetCoreLambda
 {
     public class ServerlessHelloWorld
     {
+        const string GREETINGS_TABLE_NAME = "Greetings";
+        private IDynamoDBContext dbContext { get; set; }
+
         public ServerlessHelloWorld()
         {
+            AWSConfigsDynamoDB.Context.TypeMappings[typeof(Greeting)] = new Amazon.Util.TypeMapping(typeof(Greeting), GREETINGS_TABLE_NAME);
 
+            var config = new DynamoDBContextConfig { Conversion = DynamoDBEntryConversion.V2 };
+            
+            this.dbContext = new DynamoDBContext(new AmazonDynamoDBClient(), config);
+        }
+
+        // Constructor used for testing
+        public ServerlessHelloWorld(IAmazonDynamoDB client)
+        {
+            AWSConfigsDynamoDB.Context.TypeMappings[typeof(Greeting)] = new Amazon.Util.TypeMapping(typeof(Greeting), GREETINGS_TABLE_NAME);
+
+            var config = new DynamoDBContextConfig { Conversion = DynamoDBEntryConversion.V2 };
+
+            this.dbContext = new DynamoDBContext(client, config);
         }
 
         // Lambda Signature: AWSNetCore::AWSNetCoreLambda.ServerlessHelloWorld::Get
-        public string Get (ILambdaContext context)
+        public async Task<string> Get (ILambdaContext context)
         {
-            context.Logger.LogLine("Get Request");
+            context.Logger.LogLine("Get Greeting Request");
 
-            Greeting greeting = new Greeting();
+            var greeting = await dbContext.LoadAsync<Greeting>("english");
 
-            greeting.greeting = "Hello World";
+            context.Logger.LogLine($"Found greeting: {greeting != null}");
+
+            if (greeting == null)
+            {
+                return (string.Empty);
+            }
 
             return JsonConvert.SerializeObject(greeting);
         }
-
-        // Lambda Signature: AWSNetCore::AWSNetCoreLambda.ServerlessHelloWorld::Get
-        /*public APIGatewayProxyResponse Get (APIGatewayProxyRequest request, ILambdaContext context)
-        {
-            context.Logger.LogLine("Get Request");
-
-            Greeting greeting = new Greeting();
-
-            greeting.greeting = "Hello World";
-
-            var response = new APIGatewayProxyResponse
-            {
-                StatusCode = (int)HttpStatusCode.OK,
-                Body = JsonConvert.SerializeObject(greeting),
-                Headers = new Dictionary<string, string> { { "Content-Type", "application/json" }, { "Access-Control-Allow-Origin", "*" } }
-            };
-
-            return response;
-        }*/
     }
 }
