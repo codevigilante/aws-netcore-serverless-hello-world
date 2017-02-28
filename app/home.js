@@ -15,11 +15,9 @@ $(document).ready(function()
         url: "https://ugleus55fg.execute-api.us-east-1.amazonaws.com/test/greetings",
         success: function(result)
         {
-            // 'result' = { "greeting": "Hello World" }
-            
-            var jsonObj = $.parseJSON(result);
+            console.log(result);
                         
-            resolveTemplate("#data", ".data-container", jsonObj);
+            resolveTemplate("#data", ".data-container", result);
         },
         error: function()
         {
