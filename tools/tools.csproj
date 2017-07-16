@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <Description>SillyWidgets.Tools adds commands to the dotnet cli to aid in Silly Widgets development.</Description>
+    <AssemblyTitle>SillyWidgets.Tools</AssemblyTitle>
+    <AssemblyName>dotnet-silly</AssemblyName>
+    <PackageId>SillyWidgets.Tools</PackageId>
+    <PackageTags>AWS;Lambda;SillyWidgets</PackageTags>
+    <PackageType>DotnetCliTool</PackageType>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <Version>0.0.1</Version>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+  </ItemGroup>
+
+</Project>

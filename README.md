@@ -1,6 +1,6 @@
-# AWS .NET Core (1.0) Serverless "Hello World"
+# AWS .NET Core (1.1) Serverless "Hello World"
 
-This little app is an experiment to play around with AWS "serverless" infrastructure using the fairly new .NET Core and C#.  
+This little app is an experiment to play around with AWS "serverless" infrastructure using the fairly new .NET Core and C# AND to prototype Silly Widgets framework for developing apps targeting AWS Lambda. 
 
 See it in action @ [awsnetcore.com](http://awsnetcore.com)
 
